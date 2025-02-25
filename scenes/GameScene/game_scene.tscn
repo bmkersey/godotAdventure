@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6g3rgepxlf15"]
+[gd_scene load_steps=23 format=4 uid="uid://b6g3rgepxlf15"]
 
 [ext_resource type="Texture2D" uid="uid://g5eq7ish27r6" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_g0ld2"]
 [ext_resource type="PackedScene" uid="uid://6ie2aq6mempi" path="res://scenes/Player/Player.tscn" id="1_p8nsv"]
@@ -7,7 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://6hjjxm8uqeen" path="res://scenes/DungeonEntrance/dungeon_entrance.tscn" id="5_d6qrq"]
 [ext_resource type="PackedScene" uid="uid://ceo038s8jafjl" path="res://scenes/BlockScene/block.tscn" id="5_wyq58"]
 [ext_resource type="PackedScene" uid="uid://cgt12k7s4s8ef" path="res://scenes/PuzzleButton/puzzle_button.tscn" id="6_13cb5"]
+[ext_resource type="Texture2D" uid="uid://c26282xhp0xtq" path="res://Ninja Adventure - Asset Pack/Actor/Characters/KnightGold/SpriteSheet.png" id="7_ck7yg"]
 [ext_resource type="PackedScene" uid="uid://bnwblnxtv70b8" path="res://scenes/LockedDoor/LockedDoor.tscn" id="7_prirh"]
+[ext_resource type="Texture2D" uid="uid://ci20ujg53s682" path="res://Ninja Adventure - Asset Pack/Actor/Characters/KnightGold/Faceset.png" id="8_ibhhw"]
+[ext_resource type="Texture2D" uid="uid://fwsexwe1fuj4" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Caveman/SpriteSheet.png" id="9_5uhx3"]
+[ext_resource type="PackedScene" uid="uid://cmn2e2uo5waek" path="res://scenes/NPC/NPC.tscn" id="9_mrkj2"]
+[ext_resource type="Texture2D" uid="uid://ct0gv8n3qn4g4" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Caveman/Faceset.png" id="10_ap7wt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_74pio"]
 texture = ExtResource("1_g0ld2")
@@ -782,6 +787,14 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bs8ih")
 sources/1 = SubResource("TileSetAtlasSource_8ohmq")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaxj5"]
+atlas = ExtResource("7_ck7yg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kn0f"]
+atlas = ExtResource("9_5uhx3")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pvqlf"]
 size = Vector2(67, 8)
 
@@ -812,6 +825,56 @@ position = Vector2(0, -1)
 
 [node name="Camera2D" type="Camera2D" parent="ObstacleLayer/Player"]
 zoom = Vector2(5, 5)
+
+[node name="NPC" parent="ObstacleLayer" instance=ExtResource("9_mrkj2")]
+position = Vector2(86, -69)
+dialogue_lines = Array[String](["Hello", "Rumor has it that there is a dungeon somewhere around here.", "Goodbye."])
+
+[node name="NPC2" parent="ObstacleLayer" instance=ExtResource("9_mrkj2")]
+position = Vector2(-18, -46)
+dialogue_lines = Array[String](["Hiya!", "Did you know there is a dungeon in the west?", "Farewell."])
+
+[node name="Sprite2D" parent="ObstacleLayer/NPC2" index="0"]
+position = Vector2(0, -1)
+texture = SubResource("AtlasTexture_eaxj5")
+
+[node name="CollisionShape2D" parent="ObstacleLayer/NPC2" index="1"]
+position = Vector2(0, -1)
+
+[node name="NPCIcon" parent="ObstacleLayer/NPC2/CanvasLayer/DialogBoxTexture" index="0"]
+layout_mode = 0
+offset_left = 6.218
+offset_top = 13.784
+offset_right = 44.218
+offset_bottom = 38.0
+texture = ExtResource("8_ibhhw")
+
+[node name="Dialog" parent="ObstacleLayer/NPC2/CanvasLayer" index="1"]
+text = "Did you know there is a dungeon in the west?"
+
+[node name="NameLabel" parent="ObstacleLayer/NPC2/CanvasLayer" index="2"]
+text = "Gold Knight"
+
+[node name="NPC3" parent="ObstacleLayer" instance=ExtResource("9_mrkj2")]
+position = Vector2(-300, 3)
+dialogue_lines = Array[String](["Hi", "The dungeon is locked. Maybe you can unlock it.", "Good luck!"])
+
+[node name="Sprite2D" parent="ObstacleLayer/NPC3" index="0"]
+texture = SubResource("AtlasTexture_2kn0f")
+
+[node name="NPCIcon" parent="ObstacleLayer/NPC3/CanvasLayer/DialogBoxTexture" index="0"]
+layout_mode = 0
+offset_left = 6.218
+offset_top = 13.784
+offset_right = 44.218
+offset_bottom = 38.0
+texture = ExtResource("10_ap7wt")
+
+[node name="Dialog" parent="ObstacleLayer/NPC3/CanvasLayer" index="1"]
+text = "The dungeon is locked. Maybe you can unlock it by moving the block."
+
+[node name="NameLabel" parent="ObstacleLayer/NPC3/CanvasLayer" index="2"]
+text = "Cave Keeper"
 
 [node name="LockedDoor" parent="." instance=ExtResource("7_prirh")]
 position = Vector2(-328, -10)
@@ -844,3 +907,6 @@ shape = SubResource("RectangleShape2D_c3x45")
 
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_unpressed"]
+
+[editable path="ObstacleLayer/NPC2"]
+[editable path="ObstacleLayer/NPC3"]

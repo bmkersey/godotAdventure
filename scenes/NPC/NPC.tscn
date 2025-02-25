@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmn2e2uo5waek"]
+
+[ext_resource type="Texture2D" uid="uid://c68fadtk85xm4" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Knight/SpriteSheet.png" id="1_aayeu"]
+[ext_resource type="Script" path="res://scenes/NPC/npc.gd" id="1_hlieb"]
+[ext_resource type="Texture2D" uid="uid://c1yuoshaw0tm0" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBoxFaceset.png" id="3_u0nto"]
+[ext_resource type="Texture2D" uid="uid://bs7leawsd4wca" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Knight/Faceset.png" id="4_h6rnd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvxmn"]
+atlas = ExtResource("1_aayeu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwe3o"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_okg3l"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6kie1"]
+font_size = 28
+
+[node name="NPC" type="StaticBody2D" groups=["interactable"]]
+process_mode = 3
+script = ExtResource("1_hlieb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_nvxmn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_mwe3o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DialogBoxTexture" type="TextureRect" parent="CanvasLayer"]
+offset_left = 23.0
+offset_top = 425.0
+offset_right = 323.0
+offset_bottom = 483.0
+scale = Vector2(3.7, 3.7)
+texture = ExtResource("3_u0nto")
+
+[node name="NPCIcon" type="TextureRect" parent="CanvasLayer/DialogBoxTexture"]
+offset_left = 6.21621
+offset_top = 13.7838
+offset_right = 44.2162
+offset_bottom = 51.7838
+texture = ExtResource("4_h6rnd")
+
+[node name="Dialog" type="Label" parent="CanvasLayer"]
+offset_left = 210.0
+offset_top = 475.0
+offset_right = 1112.0
+offset_bottom = 617.0
+text = "Hello there."
+label_settings = SubResource("LabelSettings_okg3l")
+autowrap_mode = 3
+
+[node name="NameLabel" type="Label" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 424.0
+offset_right = 269.0
+offset_bottom = 463.0
+text = "Nameless Knight"
+label_settings = SubResource("LabelSettings_6kie1")
+horizontal_alignment = 1

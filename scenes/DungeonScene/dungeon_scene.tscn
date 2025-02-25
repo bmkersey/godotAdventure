@@ -814,6 +814,7 @@ terrain_set_0/terrain_0/color = Color(0.247059, 0.901961, 0.141176, 1)
 sources/0 = SubResource("TileSetAtlasSource_tyg6v")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjmnh"]
+size = Vector2(20, 97)
 
 [node name="DungeonScene" type="Node2D"]
 
@@ -877,7 +878,7 @@ position = Vector2(50, 9)
 shape = SubResource("RectangleShape2D_yjmnh")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PuzzleWalls"]
-position = Vector2(316, -7)
+position = Vector2(269, 1.5)
 shape = SubResource("RectangleShape2D_yjmnh")
 
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]

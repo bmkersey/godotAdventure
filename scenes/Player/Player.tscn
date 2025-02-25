@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://6ie2aq6mempi"]
+[gd_scene load_steps=22 format=3 uid="uid://6ie2aq6mempi"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_7x4nc"]
 [ext_resource type="Texture2D" uid="uid://dp4ac8vxdaeio" path="res://Ninja Adventure - Asset Pack/Actor/Characters/GladiatorBlue/SeparateAnim/Walk.png" id="2_5smc5"]
@@ -142,6 +142,9 @@ animations = [{
 radius = 5.0
 height = 12.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51cnt"]
+size = Vector2(8, 8)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 7
@@ -155,3 +158,13 @@ animation = &"move_down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_5knjq")
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+shape = SubResource("RectangleShape2D_51cnt")
+debug_color = Color(0.230017, 0.635961, 0.139344, 0.42)
+
+[connection signal="body_entered" from="InteractArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractArea2D" to="." method="_on_area_2d_body_exited"]
