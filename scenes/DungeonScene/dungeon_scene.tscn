@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ck3wx0m51p005"]
+[gd_scene load_steps=20 format=4 uid="uid://ck3wx0m51p005"]
 
 [ext_resource type="PackedScene" uid="uid://6ie2aq6mempi" path="res://scenes/Player/Player.tscn" id="1_icm58"]
 [ext_resource type="PackedScene" uid="uid://6hjjxm8uqeen" path="res://scenes/DungeonEntrance/dungeon_entrance.tscn" id="2_psoki"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://udcgb2q64to3" path="res://scenes/Switch/switch.tscn" id="11_aswme"]
 [ext_resource type="PackedScene" uid="uid://dmfeecdof4jce" path="res://scenes/Switch/switch_puzzle_manager.tscn" id="11_hyc0w"]
 [ext_resource type="PackedScene" uid="uid://cnvl6j6eiqii2" path="res://scenes/TreasureChest/treasure_chest.tscn" id="13_6o2c1"]
+[ext_resource type="AudioStream" uid="uid://drttak62nrl4d" path="res://Ninja Adventure - Asset Pack/Musics/2 - The Cave.ogg" id="14_i534v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tyg6v"]
 texture = ExtResource("3_e13es")
@@ -916,6 +917,12 @@ chest_name = "chest1"
 [node name="TreasureChest2" parent="." instance=ExtResource("13_6o2c1")]
 position = Vector2(265, -127)
 chest_name = "chest2"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_i534v")
+volume_db = -20.0
+autoplay = true
+parameters/looping = false
 
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_unpressed"]

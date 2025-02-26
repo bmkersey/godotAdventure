@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmn2e2uo5waek"]
+[gd_scene load_steps=10 format=3 uid="uid://cmn2e2uo5waek"]
 
 [ext_resource type="Texture2D" uid="uid://c68fadtk85xm4" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Knight/SpriteSheet.png" id="1_aayeu"]
 [ext_resource type="Script" path="res://scenes/NPC/npc.gd" id="1_hlieb"]
 [ext_resource type="Texture2D" uid="uid://c1yuoshaw0tm0" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBoxFaceset.png" id="3_u0nto"]
 [ext_resource type="Texture2D" uid="uid://bs7leawsd4wca" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Knight/Faceset.png" id="4_h6rnd"]
+[ext_resource type="AudioStream" uid="uid://b8rthq2715jdw" path="res://Ninja Adventure - Asset Pack/Sounds/Game/MiniImpact.wav" id="5_6e7sb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvxmn"]
 atlas = ExtResource("1_aayeu")
@@ -67,3 +68,6 @@ offset_bottom = 463.0
 text = "Nameless Knight"
 label_settings = SubResource("LabelSettings_6kie1")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6e7sb")

@@ -7,6 +7,7 @@ var is_activated: bool = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
+		$AudioStreamPlayer2D.play()
 		if is_activated:
 			deactivate_switch()			
 		else:
