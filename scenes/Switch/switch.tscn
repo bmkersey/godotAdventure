@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://udcgb2q64to3"]
+
+[ext_resource type="Script" path="res://switch.gd" id="1_5wspl"]
+[ext_resource type="Texture2D" uid="uid://w1hkfp8k74md" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetDungeon.png" id="2_4kja3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oc3vg"]
+size = Vector2(16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2wca"]
+atlas = ExtResource("2_4kja3")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcwcm"]
+atlas = ExtResource("2_4kja3")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13k3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2wca")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcwcm")
+}],
+"loop": true,
+"name": &"deactivated",
+"speed": 5.0
+}]
+
+[node name="Switch" type="StaticBody2D" groups=["interactable"]]
+script = ExtResource("1_5wspl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_oc3vg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_13k3a")
+animation = &"deactivated"
+autoplay = "deactivated"

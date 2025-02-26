@@ -6,6 +6,7 @@ class_name Player
 @export var push_strength:float = 300
 
 func _ready() -> void:
+	update_treasure_label()
 	if SceneManager.player_spawn_pos != Vector2(0,0):
 		position = SceneManager.player_spawn_pos
 	
@@ -14,6 +15,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_player()
 	push_blocks()
+	update_treasure_label()
 	move_and_slide()
 
 func move_player():
@@ -44,6 +46,10 @@ func push_blocks():
 		if collider_node.is_in_group("pushable"):
 			var collision_normal: Vector2 = collision.get_normal()
 			collider_node.apply_central_force(-collision_normal * push_strength)
+
+func update_treasure_label():
+	var treasure_amount: int = SceneManager.opened_chests.size()
+	%TreasureLabel.text = str(treasure_amount)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
